@@ -55,9 +55,6 @@ GEM
     erubi (1.13.0)
     faker (3.4.2)
       i18n (>= 1.8.11, < 2)
-    fincop (0.68.1.0)
-      rubocop (>= 0.68.1)
-      rubocop-rspec (>= 1.22.0)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
@@ -179,7 +176,6 @@ PLATFORMS
 
 DEPENDENCIES
   apicraft-rails!
-  fincop
   pry
   rake (~> 13.0)
   rspec (~> 3.0)
