@@ -41,5 +41,6 @@ pkg/
 .env
 .env.local
 .env.*.local
+.rspec_status
 
 /demo
