@@ -23,6 +23,8 @@ pkg/
 # Ignore the gemspec.lock file
 *.gemspec.lock
 
+Gemfile.lock
+
 # Ignore compiled extensions.
 /ext/-/
 
