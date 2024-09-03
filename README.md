@@ -99,16 +99,31 @@ my_rails_app/
 ```json
 [
   {
-    id: 66,
-    name: "tempora",
-    description: "error"
+    "id": 66,
+    "name": "tempora",
+    "description": "error"
   },
   {
-    id: 41,
-    name: "et",
-    description: "id"
+    "id": 41,
+    "name": "et",
+    "description": "id"
   }
 ]
+```
+
+The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-ResponseCode` header in the mock request.
+
+`https://yoursite.com/api/orders`
+```
+headers: {
+  Apicraft-ResponseCode: 400
+}
+```
+```json
+{
+  "code": 400,
+  "message": "Something's not right"
+}
 ```
 
 ### 👀 API Introspection
@@ -117,24 +132,25 @@ All APIs are can be introspected at `https://yoursite.com/apicraft/*`. You need 
 Example: `https://yoursite.com/apicraft/api/orders`
 ```json
 {
-  summary: "Retrieve a list of orders",
-  description: "Returns a list of orders in either JSON or XML format.",
-  operationId: "getOrders",
-  parameters: [
+  "summary": "Retrieve a list of orders",
+  "description": "Returns a list of orders in either JSON or XML format.",
+  "operationId": "getOrders",
+  "parameters": [
     {
-      name: "format",
-      in: "query",
-      description: "The response format (json or xml)",
-      required: false,
-      schema: {
-      type: "string",
-      enum: [
-        "json",
-        "xml"
-      ]
+      "name": "format",
+      "in": "query",
+      "description": "The response format (json or xml)",
+      "required": false,
+      "schema": {
+        "type": "string",
+        "enum": [
+          "json",
+          "xml"
+        ]
+      }
     }
-  },
-  responses: {
+  ],
+  "responses": {
     ...
   }
 ],
@@ -147,6 +163,14 @@ You can browse API Documentation at
 
 ## Configuration
 
+List of available configurations.
+
+```ruby
+Apicraft.configure do |config|
+  config.dir = "app/contracts"
+  config.mocks = true
+end
+```
 
 ## Development
 
