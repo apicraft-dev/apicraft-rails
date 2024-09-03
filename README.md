@@ -1,7 +1,7 @@
 # APICraft Rails
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
 
-![APICraft Rails Logo](assets/apicraft_rails.jpg)
+![APICraft Rails Logo](assets/apicraft_rails.png)
 
 ## ✨ Features
 - 🗂 **Simplified Files Management** - Management of `openapi` specifications from within `app/contracts` directory.
