@@ -8,17 +8,17 @@ Gem::Specification.new do |spec|
   spec.authors = ["Abhishek Sarkar"]
   spec.email = ["abhisheksarka@gmail.com"]
 
-  spec.summary = "Gem summary"
-  spec.description = "Write a longer description or delete this line."
-  spec.homepage = "https://www.example.com"
+  spec.summary = "APICraft Rails - Simplified API Design First Development"
+  spec.description = "🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required."
+  spec.homepage = "https://github.com/apicraft-dev/apicraft-rails"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.7.0"
 
-  spec.metadata["allowed_push_host"] = "https://www.example.com"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://www.example.com"
-  spec.metadata["changelog_uri"] = "https://www.example.com"
+  spec.metadata["source_code_uri"] = "https://github.com/apicraft-dev/apicraft-rails"
+  spec.metadata["changelog_uri"] = "https://github.com/apicraft-dev/apicraft-rails"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
