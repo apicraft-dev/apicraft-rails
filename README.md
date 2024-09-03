@@ -153,7 +153,7 @@ Example: `https://yoursite.com/apicraft/api/orders`
   "responses": {
     ...
   }
-],
+}
 ```
 ### 👀 API Documentation
 
