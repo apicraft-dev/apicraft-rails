@@ -24,7 +24,7 @@ module Apicraft
           { 'Content-Type': content_type },
           [content]
         ]
-      rescue Errors::RouteNotFound => e
+      rescue Errors::RouteNotFound
         [
           404,
           { 'Content-Type': "text/plain" },

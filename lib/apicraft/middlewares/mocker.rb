@@ -10,7 +10,7 @@ module Apicraft
       end
 
       def call(env)
-        return @app.call(env) if !config.mocks
+        return @app.call(env) unless config.mocks
 
         request = ActionDispatch::Request.new(env)
         return @app.call(env) if route_defined_in_rails?(request)
@@ -32,7 +32,7 @@ module Apicraft
         # Determine the format passed in the request.
         # If passed we use it and the response format.
         # If not we use the first format from the specs.
-        format = request.format.to_s
+        request.format.to_s
         # indicates that not format was specified.
         format = nil
 

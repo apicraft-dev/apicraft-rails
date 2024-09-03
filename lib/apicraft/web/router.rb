@@ -33,14 +33,12 @@ module Apicraft
       end
 
       def self.load_response!(method, path)
-        if routes[path].present?
-          return Actions.send(
-            routes[path][:action],
-            routes[path][:view_path]
-          )
-        else
-          return Actions.introspect(method, path)
-        end
+        return Actions.introspect(method, path) unless routes[path].present?
+
+        Actions.send(
+          routes[path][:action],
+          routes[path][:view_path]
+        )
       end
 
       def self.namespace=(namespace)

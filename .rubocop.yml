@@ -23,7 +23,14 @@ Naming/FileName:
 Metrics/MethodLength:
   Max: 75
 
+Layout/LineLength:
+  Exclude:
+    - 'apicraft-rails.gemspec'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/apicraft/middlewares/mocker.rb'
 Metrics/AbcSize:
   Exclude:
     - 'lib/apicraft/mocker/any_of.rb'
-    - 'lib/apicraft/middleware.rb'
+    - 'lib/apicraft/middlewares/mocker.rb'

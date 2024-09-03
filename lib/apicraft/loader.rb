@@ -15,7 +15,7 @@ module Apicraft
 
         load_file!(path)
 
-        route = path.sub(contracts_path.to_s, '')
+        route = path.sub(contracts_path.to_s, "")
         Web::Router.add(route, path)
       end
     end
@@ -28,12 +28,12 @@ module Apicraft
       ext = File.extname(file)
 
       parsed = if ext == ".json"
-        JSON.parse(File.read(file))
-      else
-        YAML.load_file(file)
-      end
+                 JSON.parse(File.read(file))
+               else
+                 YAML.load_file(file)
+               end
 
-      contract = OpenAPIParser.parse(
+      OpenAPIParser.parse(
         parsed,
         {
           strict_reference_validation: config.strict_reference_validation
