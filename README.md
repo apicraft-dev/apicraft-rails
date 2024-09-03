@@ -14,6 +14,8 @@
 
 - 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
 
+- 🔜 **Request Validations** - Automatic request validations (coming soon)
+
 
 ## 🪄 Works Like Magic
 
@@ -59,7 +61,7 @@ Add the APICraft Middleware into your Rails application, via the `config/applica
 module App
   class Application < Rails::Application
     # Rest of the configuration
-    config.middleware.use Apicraft::Middleware
+    config.middleware.use Apicraft::Middlewares::Mocker
   end
 end
 ```

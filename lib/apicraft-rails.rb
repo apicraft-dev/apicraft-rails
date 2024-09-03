@@ -23,7 +23,7 @@ require_relative "apicraft/loader"
 require_relative "apicraft/railtie"
 
 require_relative "apicraft/web"
-require_relative "apicraft/middleware"
+require_relative "apicraft/middlewares"
 
 # Check README.md
 module Apicraft

@@ -14,8 +14,9 @@ module Apicraft
         content_type: "Content-Type"
       },
       mocks: true,
-      strict_reference_validation: true
-    }.freeze
+      strict_reference_validation: true,
+      request_validations: true
+    }.with_indifferent_access
 
     def initialize(opts = {})
       @opts = DEFAULTS.merge(
@@ -53,6 +54,10 @@ module Apicraft
 
     def strict_reference_validation=(enabled)
       @opts[:strict_reference_validation] = enabled
+    end
+
+    def request_validations=(enabled)
+      @opts[:request_validations] = enabled
     end
   end
 end
