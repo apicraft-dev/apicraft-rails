@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>APICraft - Redoc</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding-top: 40px;
+        font-family: 'Montserrat', 'Roboto', sans-serif;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 100;
+        background-color: #1a1a1a;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+      }
+
+      .select-label {
+        color: white;
+        font-weight: 400;
+        margin-right: 10px;
+        font-size: 16px;
+      }
+
+      #api_select {
+        font-size: 16px;
+        padding: 5px 10px;
+        color: black;
+        background-color: white;
+        border: 2px solid #4CAF50;
+        border-radius: 4px;
+        cursor: pointer;
+        max-width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span class="select-label">
+        <strong>Select a definition</strong>
+      </span>
+      <select id="api_select">
+      </select>
+    </nav>
+    <redoc scroll-y-offset="body > nav"></redoc>
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"> </script>
+    <script>
+      // List of APIs
+      var apis = <%=
+        @vars[:urls].map do |u|
+          { url: u, name: u.gsub(Apicraft::Web::Router.namespace, "") }
+        end.to_json
+      %>
+
+      // Initially render first API
+      Redoc.init(apis[0].url);
+
+      // Function to handle API selection change
+      function onSelectChange() {
+        var url = this.value;
+        Redoc.init(url);
+      }
+
+      // Dynamically building the select dropdown options
+      var $select = document.getElementById('api_select');
+      apis.forEach(function(api) {
+        var $option = document.createElement('option');
+        $option.setAttribute('value', api.url);
+        $option.innerText = api.name;
+        $select.appendChild($option);
+      });
+
+      // Adding event listener for select dropdown change
+      $select.addEventListener('change', onSelectChange);
+    </script>
+  </body>
+</html>

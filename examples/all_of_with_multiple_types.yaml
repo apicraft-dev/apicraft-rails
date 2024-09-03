@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  title: Combined Object API
+  version: 1.0.0
+paths:
+  /combined-object:
+    get:
+      summary: Get a combined object
+      responses:
+        '200':
+          description: A combined object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CombinedObject'
+components:
+  schemas:
+    CombinedObject:
+      allOf:
+        - type: object
+          properties:
+            id:
+              type: integer
+              minimum: 1
+            created_at:
+              type: string
+              format: date-time
+          required:
+            - id
+        - type: object
+          properties:
+            name:
+              type: string
+              minLength: 3
+            email:
+              type: string
+              format: email
+          required:
+            - name
+      description: A schema combining two object schemas using `allOf`.

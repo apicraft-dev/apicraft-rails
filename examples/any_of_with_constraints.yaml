@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: AnyOf Example API
+  version: 1.0.0
+paths:
+  /size:
+    get:
+      summary: Get size information
+      responses:
+        '200':
+          description: Size information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SizeInfo'
+components:
+  schemas:
+    SizeInfo:
+      anyOf:
+        - type: string
+          enum: ["small", "medium", "large"]
+        - type: integer
+          minimum: 1
+          maximum: 3
+      description: A schema allowing either a string value representing a size or a corresponding integer.

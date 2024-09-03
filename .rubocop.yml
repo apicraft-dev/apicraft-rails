@@ -1,0 +1,29 @@
+AllCops:
+  Exclude:
+    - demo/app/controllers/**/*.rb
+    - demo/app/mailers/**/*.rb
+    - demo/app/models/**/*.rb
+    - demo/config/**/*.rb
+    - demo/test/**/*.rb
+  TargetRubyVersion: 2.6
+
+require:
+  - rubocop-rspec
+  - rubocop-packaging
+  - rubocop-performance
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Naming/FileName:
+  Exclude:
+    - 'lib/apicraft-rails.rb'
+
+Metrics/MethodLength:
+  Max: 75
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/apicraft/mocker/any_of.rb'
+    - 'lib/apicraft/middleware.rb'

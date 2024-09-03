@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Example API
+  version: 1.0.0
+
+paths:
+  /items:
+    get:
+      summary: Retrieve a list of items
+      description: Returns a list of items in either JSON or XML format.
+      operationId: getItems
+      parameters:
+        - name: format
+          in: query
+          description: The response format (json or xml)
+          required: false
+          schema:
+            type: string
+            enum: [json, xml]
+      responses:
+        '200':
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "Item name"
+                    description:
+                      type: string
+                      example: "Item description"
+            application/xml:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "Item name"
+                    description:
+                      type: string
+                      example: "Item description"
+                    extra:
+                      type: string
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid request format"
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid request format"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred"
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred"

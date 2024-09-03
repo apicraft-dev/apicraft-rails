@@ -1,0 +1,27 @@
+openapi: 3.0.0
+info:
+  title: OneOf Example API
+  version: 1.0.0
+paths:
+  /contact:
+    get:
+      summary: Get contact information
+      responses:
+        '200':
+          description: Contact information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactInfo'
+components:
+  schemas:
+    ContactInfo:
+      oneOf:
+        - type: string
+          format: email
+        - type: string
+          pattern: "^[0-9]{10}$"  # Matches a 10-digit phone number
+        - type: integer
+          minimum: 1000000000  # At least 10 digits
+          maximum: 9999999999  # At most 10 digits
+      description: A schema that allows either an email, a 10-digit phone number, or a numeric phone number.

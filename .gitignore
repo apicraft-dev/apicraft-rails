@@ -1,0 +1,45 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore the local gem build files.
+*.gem
+pkg/
+
+# Ignore log and temp files.
+/log/*
+/tmp/*
+
+# Ignore coverage reports.
+/coverage/
+
+# Ignore byebug history.
+.byebug_history
+
+# Ignore generated documentation.
+/doc/
+/.yardoc
+.rdoc
+
+# Ignore the gemspec.lock file
+*.gemspec.lock
+
+# Ignore compiled extensions.
+/ext/-/
+
+# Ignore test coverage artifacts
+/.resultset.json
+/.ruby-version
+
+# Ignore IDE-specific files.
+.idea/
+.vscode/
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore environment-specific files
+.env
+.env.local
+.env.*.local
+
+/demo

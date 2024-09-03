@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: Simple Object API
+  version: 1.0.0
+paths:
+  /simple-object:
+    get:
+      summary: Get a simple object
+      responses:
+        '200':
+          description: A simple object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleObject'
+components:
+  schemas:
+    SimpleObject:
+      type: object
+      properties:
+        id:
+          type: integer
+          minimum: 1
+        name:
+          type: string
+          minLength: 3
+      required:
+        - id
+        - name
+      description: A simple object schema with required properties.
