@@ -158,8 +158,8 @@ Example: `https://yoursite.com/apicraft/api/orders`
 ### 👀 API Documentation
 
 You can browse API Documentation at
-- https://yoursite.com/apicraft/swaggerdoc
-- https://yoursite.com/apicraft/redoc
+- `/apicraft/swaggerdoc`
+- `/apicraft/redoc`
 
 ## Configuration
 
