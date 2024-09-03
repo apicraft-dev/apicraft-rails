@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "pry"
-require_relative "../lib/apicraft-rails"
+require "apicraft-rails"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

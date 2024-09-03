@@ -7,22 +7,31 @@ RSpec.describe Apicraft do
     expect(Apicraft::VERSION).not_to be_nil
   end
 
-  describe '.configure' do
-    it 'yields the shared config object' do
-      expect { |b| Apicraft.configure(&b) }.to yield_with_args(Apicraft.config)
+  describe ".configure" do
+    it "yields the shared config object" do
+      expect { |b| described_class.configure(&b) }.to yield_with_args(described_class.config)
     end
 
-    it 'allows configuration via a block' do
-      Apicraft.configure do |config|
-        config.dir = '/test'
-        config.mocks = false
-        config.strict_reference_validation = false
+    context "when configuring via a block" do
+      before do
+        described_class.configure do |config|
+          config.dir = "/test"
+          config.mocks = false
+          config.strict_reference_validation = false
+        end
       end
 
-      c = Apicraft.config
-      expect(c.dir).to eq('/test')
-      expect(c.mocks).to eq(false)
-      expect(c.strict_reference_validation).to eq(false)
+      it "sets the dir configuration" do
+        expect(described_class.config.dir).to eq("/test")
+      end
+
+      it "sets the mocks configuration" do
+        expect(described_class.config.mocks).to be(false)
+      end
+
+      it "sets the strict_reference_validation configuration" do
+        expect(described_class.config.strict_reference_validation).to be(false)
+      end
     end
   end
 end
