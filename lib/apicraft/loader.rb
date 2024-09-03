@@ -11,7 +11,7 @@ module Apicraft
       return unless Dir.exist?(contracts_path)
 
       Find.find(contracts_path) do |path|
-        next unless File.file?(path) && %w[.yaml .yml].include?(File.extname(path))
+        next unless File.file?(path) && %w[.yaml .yml .json].include?(File.extname(path))
 
         load_file!(path)
 
@@ -20,11 +20,28 @@ module Apicraft
       end
     end
 
+    def self.config
+      Apicraft.config
+    end
+
     def self.load_file!(file)
+      ext = File.extname(file)
+
+      parsed = if ext == ".json"
+        JSON.parse(File.read(file))
+      else
+        YAML.load_file(file)
+      end
+
+      contract = OpenAPIParser.parse(
+        parsed,
+        {
+          strict_reference_validation: config.strict_reference_validation
+        }
+      )
+
       Openapi::Contract.create!(
-        OpenAPIParser.parse(
-          YAML.load_file(file)
-        )
+        OpenAPIParser.parse(parsed)
       )
     end
   end

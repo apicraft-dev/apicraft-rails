@@ -1,0 +1,134 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Book Store API",
+    "description": "API for managing a collection of books",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.bookstore.com/v1",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Get a list of all books",
+        "responses": {
+          "200": {
+            "description": "A list of books",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Book"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new book",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Book created successfully"
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "summary": "Get a specific book by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Details of the specified book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a book by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Book deleted successfully"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "title": {
+            "type": "string",
+            "example": "The Great Gatsby"
+          },
+          "author": {
+            "type": "string",
+            "example": "F. Scott Fitzgerald"
+          },
+          "publishedYear": {
+            "type": "integer",
+            "example": 1925
+          },
+          "genre": {
+            "type": "string",
+            "example": "Fiction"
+          }
+        },
+        "required": ["id", "title", "author"]
+      }
+    }
+  }
+}

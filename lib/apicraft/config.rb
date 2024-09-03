@@ -14,7 +14,7 @@ module Apicraft
         content_type: "Content-Type"
       },
       mocks: true,
-      introspection: true
+      strict_reference_validation: true
     }.freeze
 
     def initialize(opts = {})
@@ -31,6 +31,10 @@ module Apicraft
       @opts[:headers]
     end
 
+    def strict_reference_validation
+      @opts[:strict_reference_validation]
+    end
+
     def contracts_path
       Rails.root.join(dir)
     end
@@ -39,16 +43,16 @@ module Apicraft
       @opts[:mocks]
     end
 
-    def introspection
-      @opts[:introspection]
-    end
-
     def dir=(path)
       @opts[:dir] = path
     end
 
     def mocks=(enabled)
       @opts[:mocks] = enabled
+    end
+
+    def strict_reference_validation=(enabled)
+      @opts[:strict_reference_validation] = enabled
     end
   end
 end

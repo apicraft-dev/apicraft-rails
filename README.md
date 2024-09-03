@@ -12,7 +12,7 @@
 
 - 📺 **Documentation Out of the Box** - Documentation using `SwaggerDoc` and `Redoc` both.
 
-- 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard.
+- 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
 
 
 ## 🪄 Works Like Magic
@@ -168,7 +168,17 @@ List of available configurations.
 ```ruby
 Apicraft.configure do |config|
   config.dir = "app/contracts"
+
+  # Enables or disables the mocking features
   config.mocks = true
+
+  # allows you to enforce stricter validation of $ref
+  # references in your OpenAPI specifications.
+  # When this option is enabled, the parser will raise
+  # an error if any $ref references in your OpenAPI
+  # document are invalid, ensuring that all references
+  # are correctly defined and resolved.
+  config.strict_reference_validation = true
 end
 ```
 
