@@ -4,15 +4,15 @@
 ![APICraft Rails Logo](assets/apicraft_rails.png)
 
 ## ✨ Features
-- 🗂 **Simplified Files Management** - Management of `openapi` specifications from within `app/contracts` directory.
-
 - 🧑‍💻️ **Dynamic Mock Data Generation** - Detects the specifications and instantly mounts working routes with mock responses. No extra configuration required.
 
 - ⚙️ **Customizable Mock Responses** - Tailor mock responses to simulate different scenarios and edge cases, helping your team prepare for real-world conditions right from the start.
 
-- 🔍 **Enhanced API Validation** - Validate API Requests based on the specifications. Easy configurable to turn it on or off.
+- 🔍 **API Introspections** - Introspect API schemas without needing to dig into the docs everytime.
 
-- 📺 **Documentation Out of the Box** - Documentation is available at `/apicraft` using `SwaggerDoc` and `Redoc` both with "Try it out" feature.
+- 📺 **Documentation Out of the Box** - Documentation using `SwaggerDoc` and `Redoc` both.
+
+- 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard.
 
 
 ## 🪄 Works Like Magic
