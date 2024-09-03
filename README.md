@@ -78,12 +78,75 @@ Now every API in the specification has a functional version. If a path isn't imp
 
 ## Usage
 
-All API paths or resources, not yet implemented can be interacted with.
+Add your specification files to the `app/contracts` directory in your Rails project. You can also configure this directory to be something else.
+```
+my_rails_app/
+├── app/
+│   ├── controllers/
+│   │   ├── application_controller.rb
+│   │   └── users_controller.rb
+│   ├── contracts/
+│   │   ├── users_contract.yaml
+│   │   └── orders_contract.yaml
+│   ├── models/
+│   │   ├── user.rb
+│   │   └── order.rb
+```
+### 🥷 Working with Mock APIs
+**APICraft** dynamically generates mock APIs by interpreting contract specifications on the fly. If a real implementation is available, it seamlessly forwards the request to it.
 
-Example
+`https://yoursite.com/api/orders`
+```json
+[
+  {
+    id: 66,
+    name: "tempora",
+    description: "error"
+  },
+  {
+    id: 41,
+    name: "et",
+    description: "id"
+  }
+]
+```
 
+### 👀 API Introspection
+All APIs are can be introspected at `https://yoursite.com/apicraft/*`. You need to append the API path that you are looking for.
+
+Example: `https://yoursite.com/apicraft/api/orders`
+```json
+{
+  summary: "Retrieve a list of orders",
+  description: "Returns a list of orders in either JSON or XML format.",
+  operationId: "getOrders",
+  parameters: [
+    {
+      name: "format",
+      in: "query",
+      description: "The response format (json or xml)",
+      required: false,
+      schema: {
+      type: "string",
+      enum: [
+        "json",
+        "xml"
+      ]
+    }
+  },
+  responses: {
+    ...
+  }
+],
+```
+### 👀 API Documentation
+
+You can browse API Documentation at
+- https://yoursite.com/apicraft/swaggerdoc
+- https://yoursite.com/apicraft/redoc
 
 ## Configuration
+
 
 ## Development
 

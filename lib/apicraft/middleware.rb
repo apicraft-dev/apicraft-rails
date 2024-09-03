@@ -33,7 +33,7 @@ module Apicraft
       # If not we use the first format from the specs.
       format = request.format.to_s
       # indicates that not format was specified.
-      format = nil if format == "*/*"
+      format = nil
 
       content, content_type = response.mock(format)
       return @app.call(env) if content.blank?

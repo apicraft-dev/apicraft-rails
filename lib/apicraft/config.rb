@@ -42,5 +42,13 @@ module Apicraft
     def introspection
       @opts[:introspection]
     end
+
+    def dir=(path)
+      @opts[:dir] = path
+    end
+
+    def mocks=(enabled)
+      @opts[:mocks] = enabled
+    end
   end
 end
