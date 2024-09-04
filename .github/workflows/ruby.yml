@@ -42,6 +42,7 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby-version }}
         bundler-cache: false
+
     - name: Bundle
       run: bundle install
 
