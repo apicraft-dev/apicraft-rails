@@ -5,7 +5,7 @@ AllCops:
     - demo/app/models/**/*.rb
     - demo/config/**/*.rb
     - demo/test/**/*.rb
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 2.7
 
 require:
   - rubocop-rspec
