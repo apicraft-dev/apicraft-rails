@@ -8,7 +8,7 @@ module Apicraft
   class Loader
     def self.load!
       contracts_path = Apicraft.config.contracts_path
-      return unless Dir.exist?(contracts_path)
+      raise Errors::InvalidContractsPath unless Dir.exist?(contracts_path)
 
       Find.find(contracts_path) do |path|
         next unless File.file?(path) && %w[.yaml .yml .json].include?(File.extname(path))

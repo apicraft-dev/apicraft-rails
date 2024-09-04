@@ -1,0 +1,169 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Books API",
+    "description": "API for managing books in a library system",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com/v1"
+    }
+  ],
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Get a list of books",
+        "responses": {
+          "200": {
+            "description": "A JSON array of books",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Book"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new book",
+        "requestBody": {
+          "description": "Book object to be created",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Book created successfully"
+          }
+        }
+      }
+    },
+    "/books/{bookId}": {
+      "get": {
+        "summary": "Get a specific book by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the book to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A single book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a specific book by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the book to update"
+          }
+        ],
+        "requestBody": {
+          "description": "Updated book object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Book updated successfully"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a book by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "bookId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the book to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Book deleted successfully"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "title": {
+            "type": "string",
+            "example": "The Great Gatsby"
+          },
+          "author": {
+            "type": "string",
+            "example": "F. Scott Fitzgerald"
+          },
+          "publishedDate": {
+            "type": "string",
+            "format": "date",
+            "example": "1925-04-10"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Fiction"
+          },
+          "summary": {
+            "type": "string",
+            "example": "A novel set in the Jazz Age about the mysterious millionaire Jay Gatsby and his obsession with Daisy Buchanan."
+          }
+        },
+        "required": ["id", "title", "author", "publishedDate"]
+      }
+    }
+  }
+}

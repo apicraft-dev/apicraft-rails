@@ -169,7 +169,7 @@ List of available configurations.
 
 ```ruby
 Apicraft.configure do |config|
-  config.dir = "app/contracts"
+  config.contracts_path = Rails.root.join("app/contracts")
 
   # Enables or disables the mocking features
   config.mocks = true

@@ -8,7 +8,7 @@ module Apicraft
   # overridden by user-provided options.
   class Config
     DEFAULTS = {
-      dir: "app/contracts",
+      contracts_path: nil,
       headers: {
         response_code: "Apicraft-ResponseCode",
         content_type: "Content-Type"
@@ -24,10 +24,6 @@ module Apicraft
       ).with_indifferent_access
     end
 
-    def dir
-      @opts[:dir]
-    end
-
     def headers
       @opts[:headers]
     end
@@ -37,15 +33,15 @@ module Apicraft
     end
 
     def contracts_path
-      Rails.root.join(dir)
+      @opts[:contracts_path]
     end
 
     def mocks
       @opts[:mocks]
     end
 
-    def dir=(path)
-      @opts[:dir] = path
+    def contracts_path=(contracts_path)
+      @opts[:contracts_path] = contracts_path
     end
 
     def mocks=(enabled)

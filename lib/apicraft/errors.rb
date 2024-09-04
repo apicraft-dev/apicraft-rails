@@ -3,5 +3,6 @@
 module Apicraft
   class Errors
     class RouteNotFound < StandardError; end
+    class InvalidContractsPath < StandardError; end
   end
 end
