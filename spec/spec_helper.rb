@@ -2,7 +2,7 @@
 
 require "pry"
 require "apicraft-rails"
-require 'simplecov'
+require "simplecov"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

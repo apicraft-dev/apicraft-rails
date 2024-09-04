@@ -3,8 +3,8 @@
 source "https://rubygems.org"
 
 group :test do
-  gem 'simplecov', require: false
-  gem 'codecov', require: false
+  gem "codecov", require: false
+  gem "simplecov", require: false
 end
 
 gem "pry"
