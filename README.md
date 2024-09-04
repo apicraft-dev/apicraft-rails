@@ -1,5 +1,5 @@
 # APICraft Rails
-[![Ruby Checks](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/ruby.yml/badge.svg)](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/ruby.yml)
+[![Build](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml/badge.svg)](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml)
 
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
 
