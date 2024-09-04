@@ -44,7 +44,7 @@ jobs:
         bundler-cache: true
 
     - name: Run rubocop
-      run: bundle exec rubocop
+      run: rubocop
 
     - name: Run rspec
       run: bundle exec rspec
