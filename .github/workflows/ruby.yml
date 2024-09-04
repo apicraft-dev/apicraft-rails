@@ -41,10 +41,10 @@ jobs:
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: true
+        bundler-cache: false
 
     - name: Run rubocop
-      run: rubocop
+      run: bundle exec rubocop
 
     - name: Run rspec
       run: bundle exec rspec
