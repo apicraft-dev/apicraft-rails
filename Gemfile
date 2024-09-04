@@ -2,6 +2,11 @@
 
 source "https://rubygems.org"
 
+group :test do
+  gem 'simplecov', require: false
+  gem 'codecov', require: false
+end
+
 gem "pry"
 gem "rake", "~> 13.0"
 gem "rspec", "~> 3.0"
