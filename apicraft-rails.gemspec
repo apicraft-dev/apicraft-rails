@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required."
   spec.homepage = "https://github.com/apicraft-dev/apicraft-rails"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 2.7"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
