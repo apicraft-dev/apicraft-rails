@@ -16,14 +16,16 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 
-  SimpleCov::Formatter::LcovFormatter.config do |config|
-    config.report_with_single_file = true
+  SimpleCov::Formatter::LcovFormatter.config do |c|
+    c.report_with_single_file = true
   end
 
-  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-    SimpleCov::Formatter::HTMLFormatter,
-    SimpleCov::Formatter::LcovFormatter
-  ])
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
+    [
+      SimpleCov::Formatter::HTMLFormatter,
+      SimpleCov::Formatter::LcovFormatter
+    ]
+  )
 
   SimpleCov.start
 end
