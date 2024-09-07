@@ -15,11 +15,19 @@ module Apicraft
       end
 
       def default_content_type
-        response.content.keys[0]
+        return if content.blank?
+
+        content.keys[0]
+      end
+
+      def content
+        response.content
       end
 
       def content_for(content_type = nil)
-        response.content[content_type || default_content_type]
+        return if content.blank?
+
+        content[content_type || default_content_type]
       end
 
       def schema_for(content_type = nil)

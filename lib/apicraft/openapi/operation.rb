@@ -15,10 +15,15 @@ module Apicraft
         @operation.responses
       end
 
+      def summary
+        @operation.summary
+      end
+
       def response_for(code)
+        response = responses.response[code.to_s]
         Response.new(
-          responses.response[code.to_s]
-        )
+          response
+        ) if response.present?
       end
 
       def raw_schema
