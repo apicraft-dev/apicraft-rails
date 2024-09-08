@@ -10,7 +10,7 @@ module Apicraft
     DEFAULTS = {
       contracts_path: nil,
       headers: {
-        response_code: "Apicraft-ResponseCode",
+        response_code: "Apicraft-Response-Code",
         introspect: "Apicraft-Introspect",
         mock: "Apicraft-Mock",
         content_type: "Content-Type"

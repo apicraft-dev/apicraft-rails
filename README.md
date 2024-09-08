@@ -101,6 +101,11 @@ my_rails_app/
 **APICraft** dynamically generates mock APIs by interpreting contract specifications on the fly. You can request the mock response by passing `Apicraft-Mock: true` in the headers.
 
 `https://yoursite.com/api/orders`
+```
+headers: {
+  Apicraft-Mock: true
+}
+```
 ```json
 [
   {
@@ -116,12 +121,12 @@ my_rails_app/
 ]
 ```
 
-The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-ResponseCode` header in the mock request.
+The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-Response-Code` header in the mock request.
 
 `https://yoursite.com/api/orders`
 ```
 headers: {
-  Apicraft-ResponseCode: 400
+  Apicraft-Response-Code: 400
   Apicraft-Mock: true
 }
 ```
@@ -133,9 +138,15 @@ headers: {
 ```
 
 ### 👀 API Introspection
-All APIs are can be introspected at `https://yoursite.com/apicraft/*`. You need to append the API path that you are looking for.
+All APIs are can be introspected. You can do so by passing the `Apicraft-Introspection` header.
 
-Example: `https://yoursite.com/apicraft/api/orders`
+```
+headers: {
+  Apicraft-Introspection: true
+}
+```
+
+Example: `https://yoursite.com/api/orders`
 ```json
 {
   "summary": "Retrieve a list of orders",
@@ -195,8 +206,8 @@ Apicraft.configure do |config|
   config.headers = {
     # The name of the header used to control
     # the response code of the mock
-    # Defaults to Apicraft-ResponseCode
-    response_code: "Apicraft-ResponseCode",
+    # Defaults to Apicraft-Response-Code
+    response_code: "Apicraft-Response-Code",
 
     # The name of the header to introspect the API.
     # Defaults to Apicraft-Introspect
