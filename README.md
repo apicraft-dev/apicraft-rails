@@ -47,7 +47,7 @@ By adopting an API Design First approach with APICraft Rails, you can accelerate
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'apicraft-rails', '~> 0.2.0.beta1'
+gem 'apicraft-rails', '~> 0.3.0.beta1'
 ```
 
 And then execute:
