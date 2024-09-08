@@ -11,9 +11,12 @@ module Apicraft
       contracts_path: nil,
       headers: {
         response_code: "Apicraft-ResponseCode",
+        introspect: "Apicraft-Introspect",
+        mock: "Apicraft-Mock",
         content_type: "Content-Type"
       },
       mocks: true,
+      introspection: true,
       strict_reference_validation: true,
       request_validations: true
     }.with_indifferent_access
@@ -40,6 +43,10 @@ module Apicraft
       @opts[:mocks]
     end
 
+    def introspection
+      @opts[:introspection]
+    end
+
     def contracts_path=(contracts_path)
       @opts[:contracts_path] = contracts_path
     end
@@ -48,12 +55,22 @@ module Apicraft
       @opts[:mocks] = enabled
     end
 
+    def introspection=(enabled)
+      @opts[:introspection] = enabled
+    end
+
     def strict_reference_validation=(enabled)
       @opts[:strict_reference_validation] = enabled
     end
 
     def request_validations=(enabled)
       @opts[:request_validations] = enabled
+    end
+
+    def headers=(headers)
+      @opts[:headers] = @opts[:headers].merge(
+        headers.with_indifferent_access
+      )
     end
   end
 end

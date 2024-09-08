@@ -64,6 +64,7 @@ module App
   class Application < Rails::Application
     # Rest of the configuration
     config.middleware.use Apicraft::Middlewares::Mocker
+    config.middleware.use Apicraft::Middlewares::Introspector
   end
 end
 ```
@@ -174,7 +175,12 @@ Apicraft.configure do |config|
   config.contracts_path = Rails.root.join("app/contracts")
 
   # Enables or disables the mocking features
+  # Defaults to true
   config.mocks = true
+
+  # Enables or disables the introspection features
+  # Defaults to true
+  config.introspection = true
 
   # allows you to enforce stricter validation of $ref
   # references in your OpenAPI specifications.
@@ -182,7 +188,19 @@ Apicraft.configure do |config|
   # an error if any $ref references in your OpenAPI
   # document are invalid, ensuring that all references
   # are correctly defined and resolved.
+  # Defaults to true
   config.strict_reference_validation = true
+
+  config.headers = {
+    # The name of the header used to control
+    # the response code of the mock
+    # Defaults to Apicraft-ResponseCode
+    response_code: "Apicraft-ResponseCode",
+
+    # The name of the header to introspect the API.
+    # Defaults to Apicraft-Introspect
+    introspect: "Apicraft-Introspect"
+  }
 end
 ```
 

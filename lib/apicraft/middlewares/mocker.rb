@@ -10,24 +10,24 @@ module Apicraft
       end
 
       def call(env)
-        return @app.call(env) unless config.mocks
+        return @app.call(env) if !config.mocks
 
         request = ActionDispatch::Request.new(env)
-        return @app.call(env) if route_defined_in_rails?(request)
+        return @app.call(env) if !mock?(request)
 
         contract = Apicraft::Openapi::Contract.find_by_operation(
           request.method, request.path_info
         )
-        return @app.call(env) if contract.blank?
+        raise Errors::InvalidContract if contract.blank?
 
         operation = contract.operation(
           request.method, request.path_info
         )
-        return @app.call(env) if operation.blank?
+        raise Errors::InvalidOperation if operation.blank?
 
         code = request.headers[config.headers[:response_code]] || "200"
         response = operation.response_for(code.to_s)
-        return @app.call(env) if response.blank?
+        raise Errors::InvalidResponse if response.blank?
 
         # Determine the format passed in the request.
         # If passed we use it and the response format.
@@ -37,34 +37,32 @@ module Apicraft
         format = nil
 
         content, content_type = response.mock(format)
-        return @app.call(env) if content.blank?
 
         [
           code.to_i,
-          { 'Content-Type': content_type },
-          [content.send(convertor(content_type))]
+          {
+            'Content-Type': content_type
+          },
+          [
+            content&.send(convertor(content_type))
+          ].compact
         ]
       end
 
       private
-
-      def route_defined_in_rails?(request)
-        Rails.application.routes.recognize_path(
-          request.path_info,
-          method: request.request_method
-        )
-        true
-      rescue ActionController::RoutingError => e
-        @ex = e
-        false
-      end
 
       def config
         @config ||= Apicraft.config
       end
 
       def convertor(format)
+        return if format.blank?
+
         Apicraft::Constants::MIME_TYPE_CONVERTORS[format]
+      end
+
+      def mock?(request)
+        request.headers[config.headers[:mock]].present?
       end
     end
   end

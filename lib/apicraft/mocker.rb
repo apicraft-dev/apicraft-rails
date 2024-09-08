@@ -21,6 +21,8 @@ module Apicraft
     end
 
     def self.mock(schema)
+      return if schema.blank?
+
       handler_for(schema).new(
         schema
       ).mock

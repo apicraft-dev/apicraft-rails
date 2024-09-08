@@ -31,7 +31,7 @@ module Apicraft
       end
 
       def schema_for(content_type = nil)
-        content_for(content_type || default_content_type).schema
+        content_for(content_type || default_content_type)&.schema
       end
 
       def mock(content_type = nil)
