@@ -98,7 +98,7 @@ my_rails_app/
 │   │   └── order.rb
 ```
 ### 🥷 Working with Mock APIs
-**APICraft** dynamically generates mock APIs by interpreting contract specifications on the fly. If a real implementation is available, it seamlessly forwards the request to it.
+**APICraft** dynamically generates mock APIs by interpreting contract specifications on the fly. You can request the mock response by passing `Apicraft-Mock: true` in the headers.
 
 `https://yoursite.com/api/orders`
 ```json
@@ -122,6 +122,7 @@ The above is an example of a 200 response. If you have more responses documented
 ```
 headers: {
   Apicraft-ResponseCode: 400
+  Apicraft-Mock: true
 }
 ```
 ```json
@@ -200,6 +201,10 @@ Apicraft.configure do |config|
     # The name of the header to introspect the API.
     # Defaults to Apicraft-Introspect
     introspect: "Apicraft-Introspect"
+
+    # The name of the header to mock the API.
+    # Defaults to Apicraft-Mock
+    mock: "Apicraft-Mock"
   }
 end
 ```
