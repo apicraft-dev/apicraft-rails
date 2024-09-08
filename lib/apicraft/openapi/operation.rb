@@ -21,9 +21,11 @@ module Apicraft
 
       def response_for(code)
         response = responses.response[code.to_s]
+        return unless response.present?
+
         Response.new(
           response
-        ) if response.present?
+        )
       end
 
       def raw_schema

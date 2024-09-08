@@ -1,10 +1,7 @@
 AllCops:
   Exclude:
-    - demo/app/controllers/**/*.rb
-    - demo/app/mailers/**/*.rb
-    - demo/app/models/**/*.rb
-    - demo/config/**/*.rb
-    - demo/test/**/*.rb
+    - vendor/**/*
+    - demo/**/*
   TargetRubyVersion: 2.7
 
 require:

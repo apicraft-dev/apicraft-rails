@@ -10,10 +10,10 @@ module Apicraft
       end
 
       def call(env)
-        return @app.call(env) if !config.mocks
+        return @app.call(env) unless config.mocks
 
         request = ActionDispatch::Request.new(env)
-        return @app.call(env) if !mock?(request)
+        return @app.call(env) unless mock?(request)
 
         contract = Apicraft::Openapi::Contract.find_by_operation(
           request.method, request.path_info

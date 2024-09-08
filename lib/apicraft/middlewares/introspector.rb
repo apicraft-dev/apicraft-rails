@@ -9,10 +9,10 @@ module Apicraft
       end
 
       def call(env)
-        return @app.call(env) if !config.introspection
+        return @app.call(env) unless config.introspection
 
         request = ActionDispatch::Request.new(env)
-        return @app.call(env) if !introspect?(request)
+        return @app.call(env) unless introspect?(request)
 
         schema = Apicraft::Openapi::Contract.find_by_operation(
           request.method, request.path_info

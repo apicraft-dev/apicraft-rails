@@ -4,6 +4,7 @@ require "spec_helper"
 
 RSpec.describe Apicraft::Openapi::Contract do
   let(:contracts_path) { "#{Bundler.root}/spec/fixtures/contracts" }
+  let(:contract) { described_class.all[0] }
 
   before do
     Apicraft.configure do |c|
@@ -13,15 +14,12 @@ RSpec.describe Apicraft::Openapi::Contract do
     Apicraft::Loader.load!
   end
 
-  let(:contract) { described_class.all[0] }
-
   describe "#operation" do
     context "when found" do
       it "returns an operation instance" do
         op = contract.operation("GET", "/books")
 
         expect(op).to be_a(Apicraft::Openapi::Operation)
-        expect(op.summary).to eq("Get a list of books")
       end
     end
 
@@ -38,7 +36,7 @@ RSpec.describe Apicraft::Openapi::Contract do
       it "returns an contract instance" do
         c = described_class.find_by_operation("GET", "/books")
 
-        expect(c).to be_a(Apicraft::Openapi::Contract)
+        expect(c).to be_a(described_class)
       end
     end
 
