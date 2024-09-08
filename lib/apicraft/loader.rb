@@ -8,6 +8,8 @@ module Apicraft
   class Loader
     def self.load!
       contracts_path = Apicraft.config.contracts_path
+      return if contracts_path.blank?
+
       raise Errors::InvalidContractsPath unless Dir.exist?(contracts_path)
 
       Find.find(contracts_path) do |path|
