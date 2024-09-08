@@ -47,7 +47,7 @@ By adopting an API Design First approach with APICraft Rails, you can accelerate
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'apicraft-rails', '~> 0.3.0.beta1'
+gem 'apicraft-rails', '~> 0.4.0.beta1'
 ```
 
 And then execute:
@@ -56,20 +56,25 @@ And then execute:
 
 After the installation in your rails project, you can start adding contracts in the `app/contracts` directory. This can have any internal directory structure based on your API versions, standards, etc.
 
-Add the APICraft Middleware into your Rails application, via the `config/application.rb`
+Add the following into your Rails application, via the `config/application.rb`
 
 ```ruby
 # config/application.rb
 module App
   class Application < Rails::Application
     # Rest of the configuration...
+
     config.middleware.use Apicraft::Middlewares::Mocker
     config.middleware.use Apicraft::Middlewares::Introspector
+
+    Apicraft.configure do |config|
+      config.contracts_path = Rails.root.join("app/contracts")
+    end
   end
 end
 ```
 
-Now every API in the specification has a functional version. If a path isn't implemented, APICraft serves a mock response; otherwise, it forwards the request to your application as usual.
+Now every API in the specification has a functional version. For any path (from the contracts), APICraft serves a mock response when `Apicraft-Mock: true` is passed in the headers otherwise, it forwards the request to your application as usual.
 
 ## Usage
 

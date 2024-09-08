@@ -2,5 +2,5 @@
 
 # Current version of Apicraft.
 module Apicraft
-  VERSION = "0.3.0.beta1"
+  VERSION = "0.4.0.beta1"
 end

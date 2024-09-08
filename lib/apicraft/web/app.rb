@@ -43,7 +43,7 @@ module Apicraft
       def self.authorized?(env)
         auth = Rack::Auth::Basic::Request.new(env)
         username, password = auth.provided? && auth.basic? && auth.credentials
-        @use.call(username, password).present?
+        @use&.call(username, password).present?
       end
 
       def self.use(&block)
