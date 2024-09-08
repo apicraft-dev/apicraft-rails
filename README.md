@@ -62,20 +62,10 @@ Add the APICraft Middleware into your Rails application, via the `config/applica
 # config/application.rb
 module App
   class Application < Rails::Application
-    # Rest of the configuration
+    # Rest of the configuration...
     config.middleware.use Apicraft::Middlewares::Mocker
     config.middleware.use Apicraft::Middlewares::Introspector
   end
-end
-```
-
-```ruby
-# config/routes.rb
-# frozen_string_literal: true
-
-Rails.application.routes.draw do
-  # Rest of the routes
-  mount Apicraft::Web::App, at: "/apicraft"
 end
 ```
 
@@ -174,9 +164,34 @@ Example: `https://yoursite.com/api/orders`
 ```
 ### 👀 API Documentation
 
+Mount the documentation views in your route file.
+
+```ruby
+# config/routes.rb
+
+Rails.application.routes.draw do
+  # Rest of the routes...
+  mount Apicraft::Web::App, at: "/apicraft"
+end
+```
+
 You can browse API Documentation at
 - `/apicraft/swaggerdoc`
 - `/apicraft/redoc`
+
+Enable authentication for the `/apicraft` namespace.
+
+```ruby
+# config/application.rb
+module App
+  class Application < Rails::Application
+    # Rest of the configuration...
+    Apicraft::Web::App.use do |user, password|
+      [user, password] == ["admin", "password"]
+    end
+  end
+end
+```
 
 ## Configuration
 
@@ -217,6 +232,10 @@ Apicraft.configure do |config|
     # Defaults to Apicraft-Mock
     mock: "Apicraft-Mock"
   }
+end
+
+Apicraft::Web::App.use do |user, password|
+  [user, password] == ["admin", "password"]
 end
 ```
 
