@@ -1,4 +1,4 @@
-# APICraft Rails (Currently in Beta)
+# APICraft Rails (Beta)
 [![Build](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml/badge.svg)](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml)
 
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
@@ -47,7 +47,7 @@ By adopting an API Design First approach with APICraft Rails, you can accelerate
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'apicraft'
+gem 'apicraft-rails', '~> 0.1.0.beta1'
 ```
 
 And then execute:
