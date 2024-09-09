@@ -6,6 +6,22 @@
 
 ![APICraft Rails Logo](assets/apicraft_rails.png)
 
+- [APICraft Rails (Beta)](#apicraft-rails-beta)
+  - [✨ Features](#-features)
+  - [🔜 Upcoming Features](#-upcoming-features)
+  - [🪄 Works Like Magic](#-works-like-magic)
+  - [🕊 API Design First Philosophy](#-api-design-first-philosophy)
+  - [🏗 Installation](#-installation)
+  - [⚙️ Usage](#️-usage)
+    - [🎭 API Mocking](#-api-mocking)
+    - [🎮 API Mocking (Behaviours)](#-api-mocking-behaviours)
+    - [🧐 API Introspection](#-api-introspection)
+    - [📖 API Documentation (Swagger docs and Redoc)](#-api-documentation-swagger-docs-and-redoc)
+  - [🔧 Configuration](#-configuration)
+  - [🤝 Contributing](#-contributing)
+  - [📝 License](#-license)
+  - [📘 Code of Conduct](#-code-of-conduct)
+
 ## ✨ Features
 - 🧑‍💻️ **Dynamic Mock Data Generation** - Detects the specifications and instantly mounts working routes with mock responses. No extra configuration required.
 
@@ -17,7 +33,9 @@
 
 - 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
 
-- 🔜 **Request Validations** - Automatic request validations (coming soon)
+## 🔜 Upcoming Features
+- 💢 **Request Validations** - Automatic request validations.
+- 💎 **Clean & Custom Ruby DSL** - Support for a Ruby DSL alongwith the current `.json` and `.yaml` formats.
 
 
 ## 🪄 Works Like Magic
@@ -43,7 +61,7 @@ The API Design First philosophy is at the heart of APICraft Rails, and it’s a 
 By adopting an API Design First approach with APICraft Rails, you can accelerate your development process by 2-3x, delivering high-quality APIs faster and with fewer headaches.
 
 
-## Installation
+## 🏗 Installation
 
 Add this line to your application's Gemfile:
 
@@ -77,7 +95,7 @@ end
 
 Now every API in the specification has a functional version. For any path (from the contracts), APICraft serves a mock response when `Apicraft-Mock: true` is passed in the headers otherwise, it forwards the request to your application as usual.
 
-## Usage
+## ⚙️ Usage
 
 Add your specification files to the `app/contracts` directory in your Rails project. You can also configure this directory to be something else.
 ```
@@ -93,7 +111,7 @@ my_rails_app/
 │   │   ├── user.rb
 │   │   └── order.rb
 ```
-### 🥷 Working with Mock APIs
+### 🎭 API Mocking
 **APICraft** dynamically generates mock APIs by interpreting contract specifications on the fly. You can request the mock response by passing `Apicraft-Mock: true` in the headers.
 
 `https://yoursite.com/api/orders`
@@ -117,6 +135,7 @@ headers: {
 ]
 ```
 
+### 🎮 API Mocking (Behaviours)
 The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-Response-Code` header in the mock request.
 
 `https://yoursite.com/api/orders`
@@ -133,7 +152,7 @@ headers: {
 }
 ```
 
-### 👀 API Introspection
+### 🧐 API Introspection
 All APIs are can be introspected. You can do so by passing the `Apicraft-Introspection` header.
 
 ```
@@ -168,7 +187,7 @@ Example: `https://yoursite.com/api/orders`
   }
 }
 ```
-### 👀 API Documentation
+### 📖 API Documentation (Swagger docs and Redoc)
 
 Mount the documentation views in your route file.
 
@@ -199,7 +218,7 @@ module App
 end
 ```
 
-## Configuration
+## 🔧 Configuration
 
 List of available configurations.
 
@@ -245,14 +264,14 @@ Apicraft::Web::App.use do |user, password|
 end
 ```
 
-## Contributing
+## 🤝 Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/apicraft-dev/apicraft-rails. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/apicraft-dev/apicraft-rails/blob/main/CODE_OF_CONDUCT.md).
 
-## License
+## 📝 License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-## Code of Conduct
+## 📘 Code of Conduct
 
 Everyone interacting in the Apicraft project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/apicraft/blob/main/CODE_OF_CONDUCT.md).
