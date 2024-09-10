@@ -223,6 +223,9 @@ module App
   end
 end
 ```
+RapiDoc                    |  SwaggerDoc
+:-------------------------:|:-------------------------:
+![](assets/rapidoc.png)  |  ![](assets/swaggerdoc.png)
 
 ## 🔧 Configuration
 
