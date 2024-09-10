@@ -4,6 +4,14 @@
 
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
 
+We believe that **API contracts** should lead the development process, not be an afterthought derived from code.
+
+This framework embraces the **API Design-First** philosophy, ensuring that contracts remain independent from implementation.
+
+It avoids the pitfalls of the code-first methodology, where contracts are auto-generated, often leading to inconsistency and misalignment.
+
+By focusing on creating clear, well-defined contracts upfront, and providing tools like mocks and introspection, APICraft enables teams to work in parallel, accelerating development while maintaining API integrity and clarity.
+
 ![APICraft Rails Logo](assets/apicraft_rails.png)
 
 - [APICraft Rails (Beta)](#apicraft-rails-beta)
@@ -16,7 +24,7 @@
     - [🎭 API Mocking](#-api-mocking)
     - [🎮 API Mocking (Behaviours)](#-api-mocking-behaviours)
     - [🧐 API Introspection](#-api-introspection)
-    - [📖 API Documentation (Swagger docs and Redoc)](#-api-documentation-swagger-docs-and-redoc)
+    - [📖 API Documentation (Swagger docs and RapiDoc)](#-api-documentation-swagger-docs-and-rapidoc)
   - [🔧 Configuration](#-configuration)
   - [🤝 Contributing](#-contributing)
   - [📝 License](#-license)
@@ -29,7 +37,7 @@
 
 - 🔍 **API Introspections** - Introspect API schemas without needing to dig into the docs everytime.
 
-- 📺 **Documentation Out of the Box** - Documentation using `SwaggerDoc` and `Redoc` both.
+- 📺 **Documentation Out of the Box** - Documentation using `SwaggerDoc` and `RapiDoc` both.
 
 - 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
 
@@ -187,7 +195,7 @@ Example: `https://yoursite.com/api/orders`
   }
 }
 ```
-### 📖 API Documentation (Swagger docs and Redoc)
+### 📖 API Documentation (Swagger docs and RapiDoc)
 
 Mount the documentation views in your route file.
 
@@ -202,7 +210,7 @@ end
 
 You can browse API Documentation at
 - `/apicraft/swaggerdoc`
-- `/apicraft/redoc`
+- `/apicraft/rapidoc`
 
 Enable authentication for the `/apicraft` namespace.
 
