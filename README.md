@@ -4,13 +4,11 @@
 
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
 
-We believe that **API contracts** should lead the development process, not be an afterthought derived from code.
+We believe that API contracts should lead the development process, not be an afterthought derived from code. This framework embraces the [**API Design-First philosophy**](#-api-design-first-philosophy), ensuring that contracts remain independent from implementation.
 
-This framework embraces the **API Design-First** philosophy, ensuring that contracts remain independent from implementation.
+With APICraft, contracts are not only clear and consistent, but they’re also immediately usable, enabling teams to work with automatically generated mocks, behaviours and introspection tools, allowing development to begin in parallel, without waiting for backend implementations.
 
 It avoids the pitfalls of the code-first methodology, where contracts are auto-generated, often leading to inconsistency and misalignment.
-
-By focusing on creating clear, well-defined contracts upfront, and providing tools like mocks and introspection, APICraft enables teams to work in parallel, accelerating development while maintaining API integrity and clarity.
 
 ![APICraft Rails Logo](assets/apicraft_rails.png)
 
