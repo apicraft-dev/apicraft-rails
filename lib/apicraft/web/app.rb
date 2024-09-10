@@ -13,10 +13,10 @@ module Apicraft
         Router.namespace = env["SCRIPT_NAME"]
         path = uri.split(
           Router.namespace
-        )[-1]
+        )[-1] || "/"
 
         content, content_type = Router.load_response!(
-          method, path || "/"
+          method, path
         )
 
         raise Errors::RouteNotFound if content.nil?

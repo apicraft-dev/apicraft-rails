@@ -60,8 +60,32 @@
         end.to_json
       %>
 
+      const customTheme = {
+        colors: {
+          primary: {
+            main: '#4CAF50', // Set the primary color to #4CAF50
+          },
+          text: {
+            primary: '#ffffff',
+            secondary: '#b0b0b0',
+          },
+          background: {
+            primary: '#1a1a1a', // Set the background color to #1a1a1a
+            secondary: '#222222',
+          },
+          borders: '#4CAF50', // Border color for primary sections
+        },
+        typography: {
+          fontSize: '16px',
+          fontFamily: '"Montserrat", "Roboto", sans-serif',
+        },
+        sidebar: {
+          backgroundColor: '#2b2b2b',
+        },
+      };
+
       // Initially render first API
-      Redoc.init(apis[0].url);
+      Redoc.init(apis[0].url, { theme: null });
 
       // Function to handle API selection change
       function onSelectChange() {

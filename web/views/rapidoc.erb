@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>APICraft - Rapidoc</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Montserrat', 'Roboto', sans-serif;
+        background-color: #121212;
+      }
+
+      .select-label {
+        color: white;
+        font-weight: 400;
+        margin-right: 10px;
+      }
+
+      #api_select {
+        padding: 16px 16px;
+        color: white;
+        background-color: black;
+        border: none;
+        border-bottom: 1px solid #333;
+        border-radius: 0px;
+        cursor: pointer;
+        outline: none !important;
+        width: 100%;
+        display: none;
+      }
+
+      rapi-doc {
+        flex-grow: 1;
+        height: calc(100vh - 0px); /* Adjust for nav height */
+        width: 100%;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <rapi-doc
+      theme="dark"
+      id="rapidoc_element"
+      header-color="#121212"
+      primary-color="#4C2A85"
+      use-path-in-nav-bar="false"
+      bg-color="#111"
+      show-header="false"
+    >
+      <div slot="nav-logo">
+        <img
+          src="assets/images/thumb.png"
+          height="60px"
+          width="60px"
+        />
+      <span style="top: -23px; position: relative;"><strong>API</strong>Craft</span>
+      </div>
+      <select id="api_select">
+      </select>
+    </rapi-doc>
+    <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
+    <script>
+      var $rapiDocElement = document.getElementById('rapidoc_element');
+      var $select = document.getElementById('api_select');
+
+      // List of APIs
+      var apis = <%=
+        @vars[:urls].map do |u|
+          { url: u, name: u.gsub(Apicraft::Web::Router.namespace, "") }
+        end.to_json
+      %>
+
+      $rapiDocElement.setAttribute('spec-url', apis[0].url);
+      $rapiDocElement.setAttribute('style', "display: block;");
+
+      // Function to handle API selection change
+      function onSelectChange() {
+        var url = this.value;
+        $rapiDocElement.setAttribute('spec-url', url);
+      }
+
+      // Dynamically building the select dropdown options
+      apis.forEach(function(api) {
+        var $option = document.createElement('option');
+        $option.setAttribute('value', api.url);
+        $option.innerText = api.name;
+        $select.appendChild($option);
+      });
+
+      // Adding event listener for select dropdown change
+      $select.addEventListener('change', onSelectChange);
+      $select.setAttribute('style', "display: block;");
+    </script>
+    <style>
+      .header-title {
+        display: none !important;
+      }
+    </style>
+  </body>
+</html>

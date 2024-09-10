@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>APICraft</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding-top: 40px;
+        font-family: 'Montserrat', 'Roboto', sans-serif;
+        background-color: #121212;
+        position: relative;
+      }
+      #container {
+        margin-top: 60px;
+        text-align: center;
+        max-width: 550px;
+        margin-left: auto;
+        margin-right: auto;
+        color: white;
+      }
+      .muted {
+        opacity: 0.5;
+      }
+      .primary-btn {
+        background-color: #4C2A85;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        display: inline-block;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .primary-btn:hover {
+        background-color: #3A2064;
+      }
+
+      .github-btn {
+        background-color: white;
+        color: #4C2A85;
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 12px;
+        display: inline-block;
+        border: 2px solid #4C2A85;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .github-btn:hover {
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <img src="<%= @vars[:namespace] %>/assets/images/logo.png" height="120" width="120"/>
+      <p>Welcome to <strong>API</strong>Craft.<p>
+      <p class="muted">An opinionated framework for an API Design First approach to development.</p>
+      <div>
+        <a class="primary-btn" href="<%= @vars[:namespace] %>/rapidoc">RapiDoc</a>
+        <a class="primary-btn" href="<%= @vars[:namespace] %>/swaggerdoc">Swagger</a>
+      </div>
+      <br/>
+      <div>
+        <a href="https://github.com/apicraft-dev/apicraft-rails" class="github-btn" target="_blank">
+          ⭐ Star us on GitHub
+        </a>
+      </div>
+      <br/>
+      <div>
+        <code class="muted">v<%= @vars[:version] %></code>
+      </div>
+    </div>
+  </body>
+</html>

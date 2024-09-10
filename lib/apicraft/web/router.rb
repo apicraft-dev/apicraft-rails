@@ -7,20 +7,33 @@ module Apicraft
       WEB_ROOT = File.expand_path(
         "#{File.dirname(__FILE__)}/../../../web"
       )
+      IMAGES_DIR = "#{WEB_ROOT}/assets/images"
 
       def self.routes
         @routes ||= {
           "/": {
-            action: :index,
-            view_path: "#{WEB_ROOT}/views/index.html"
+            action: :render_erb,
+            view_path: "#{WEB_ROOT}/views/index.erb"
           },
           "/swaggerdoc": {
-            action: :swaggerdoc,
+            action: :render_erb,
             view_path: "#{WEB_ROOT}/views/swaggerdoc.erb"
           },
           "/redoc": {
-            action: :redoc,
+            action: :render_erb,
             view_path: "#{WEB_ROOT}/views/redoc.erb"
+          },
+          "/rapidoc": {
+            action: :render_erb,
+            view_path: "#{WEB_ROOT}/views/rapidoc.erb"
+          },
+          "/assets/images/thumb.png": {
+            action: :images,
+            view_path: "#{IMAGES_DIR}/apicraft_thumb.png"
+          },
+          "/assets/images/logo.png": {
+            action: :images,
+            view_path: "#{IMAGES_DIR}/apicraft.png"
           }
         }.with_indifferent_access
       end
@@ -32,9 +45,7 @@ module Apicraft
         }
       end
 
-      def self.load_response!(method, path)
-        return Actions.introspect(method, path) unless routes[path].present?
-
+      def self.load_response!(_method, path)
         Actions.send(
           routes[path][:action],
           routes[path][:view_path]
