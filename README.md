@@ -1,6 +1,5 @@
 # APICraft Rails (Beta)
 [![Build](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml/badge.svg)](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml)
-[![Gem Version](https://badge.fury.io/rb/apicraft-rails.svg)](https://badge.fury.io/rb/apicraft-rails)
 
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
 
