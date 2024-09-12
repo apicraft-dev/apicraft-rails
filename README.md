@@ -252,6 +252,10 @@ Apicraft.configure do |config|
   # Defaults to true
   config.strict_reference_validation = true
 
+  # When simulating delay using the mocks, the max
+  # delay in seconds that can be simulated
+  config.max_allowed_delay = 30
+
   config.headers = {
     # The name of the header used to control
     # the response code of the mock
@@ -260,11 +264,14 @@ Apicraft.configure do |config|
 
     # The name of the header to introspect the API.
     # Defaults to Apicraft-Introspect
-    introspect: "Apicraft-Introspect"
+    introspect: "Apicraft-Introspect",
 
     # The name of the header to mock the API.
     # Defaults to Apicraft-Mock
-    mock: "Apicraft-Mock"
+    mock: "Apicraft-Mock",
+
+    # Delay simulation header name
+    delay: "Apicraft-Delay"
   }
 end
 
