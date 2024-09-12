@@ -63,7 +63,7 @@ module Apicraft
         contract = Apicraft::Openapi::Contract.find_by_operation(
           request.method, request.path_info
         )
-        raise Errors::InvalidContract if c.blank?
+        raise Errors::InvalidContract if contract.blank?
 
         contract
       end
@@ -79,7 +79,7 @@ module Apicraft
 
       def use_delay!(request)
         request_delay = delay(request)
-        raise Errors::DelayTooHigh if request_delay > max_allowed_delay
+        raise Errors::DelayTooHigh if request_delay > config.max_allowed_delay
 
         sleep(request_delay)
       end
