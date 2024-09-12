@@ -13,12 +13,14 @@ module Apicraft
         response_code: "Apicraft-Response-Code",
         introspect: "Apicraft-Introspect",
         mock: "Apicraft-Mock",
+        delay: "Apicraft-Delay",
         content_type: "Content-Type"
       },
       mocks: true,
       introspection: true,
       strict_reference_validation: true,
-      request_validations: true
+      request_validations: true,
+      max_allowed_delay: 30
     }.with_indifferent_access
 
     def initialize(opts = {})
@@ -47,6 +49,10 @@ module Apicraft
       @opts[:introspection]
     end
 
+    def max_allowed_delay
+      @opts[:delay]
+    end
+
     def contracts_path=(contracts_path)
       @opts[:contracts_path] = contracts_path
     end
@@ -65,6 +71,10 @@ module Apicraft
 
     def request_validations=(enabled)
       @opts[:request_validations] = enabled
+    end
+
+    def max_allowed_delay=(enabled)
+      @opts[:max_allowed_delay] = enabled
     end
 
     def headers=(headers)
