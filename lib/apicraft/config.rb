@@ -50,7 +50,7 @@ module Apicraft
     end
 
     def max_allowed_delay
-      @opts[:delay]
+      @opts[:max_allowed_delay]
     end
 
     def contracts_path=(contracts_path)
