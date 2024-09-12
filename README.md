@@ -143,12 +143,14 @@ headers: {
 
 ### 🎮 API Mocking (Behaviours)
 The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-Response-Code` header in the mock request.
+You can find a list of all the supported headers in the [configuration section](#-configuration) that would allow you to manipulate the API Behaviour.
 
 `https://yoursite.com/api/orders`
 ```
 headers: {
   Apicraft-Response-Code: 400
   Apicraft-Mock: true
+  Apicraft-Delay: 5
 }
 ```
 ```json
