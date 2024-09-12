@@ -1,4 +1,4 @@
-# APICraft Rails (Beta)
+# APICraft Rails
 [![Build](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml/badge.svg)](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml)
 [![Gem Version](https://badge.fury.io/rb/apicraft-rails.svg?v=0.5.2.beta1)](https://badge.fury.io/rb/apicraft-rails)
 
