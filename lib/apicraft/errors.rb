@@ -7,5 +7,6 @@ module Apicraft
     class InvalidContract < StandardError; end
     class InvalidOperation < StandardError; end
     class InvalidResponse < StandardError; end
+    class DelayTooHigh < StandardError; end
   end
 end

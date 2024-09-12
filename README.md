@@ -1,6 +1,6 @@
 # APICraft Rails (Beta)
 [![Build](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml/badge.svg)](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml)
-[![Gem Version](https://badge.fury.io/rb/apicraft-rails.svg?v=0.5.1.beta1)](https://badge.fury.io/rb/apicraft-rails)
+[![Gem Version](https://badge.fury.io/rb/apicraft-rails.svg?v=0.5.2.beta1)](https://badge.fury.io/rb/apicraft-rails)
 
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
 
@@ -72,7 +72,7 @@ By adopting an API Design First approach with APICraft Rails, you can accelerate
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'apicraft-rails', '~> 0.5.1.beta1'
+gem 'apicraft-rails', '~> 0.5.2.beta1'
 ```
 
 And then execute:
@@ -143,12 +143,14 @@ headers: {
 
 ### 🎮 API Mocking (Behaviours)
 The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-Response-Code` header in the mock request.
+You can find a list of all the supported headers in the [configuration section](#-configuration) that would allow you to manipulate the API Behaviour.
 
 `https://yoursite.com/api/orders`
 ```
 headers: {
   Apicraft-Response-Code: 400
   Apicraft-Mock: true
+  Apicraft-Delay: 5
 }
 ```
 ```json
@@ -252,6 +254,10 @@ Apicraft.configure do |config|
   # Defaults to true
   config.strict_reference_validation = true
 
+  # When simulating delay using the mocks, the max
+  # delay in seconds that can be simulated
+  config.max_allowed_delay = 30
+
   config.headers = {
     # The name of the header used to control
     # the response code of the mock
@@ -260,11 +266,14 @@ Apicraft.configure do |config|
 
     # The name of the header to introspect the API.
     # Defaults to Apicraft-Introspect
-    introspect: "Apicraft-Introspect"
+    introspect: "Apicraft-Introspect",
 
     # The name of the header to mock the API.
     # Defaults to Apicraft-Mock
-    mock: "Apicraft-Mock"
+    mock: "Apicraft-Mock",
+
+    # Delay simulation header name
+    delay: "Apicraft-Delay"
   }
 end
 
