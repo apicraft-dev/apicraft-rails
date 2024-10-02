@@ -2,6 +2,7 @@
 
 module Apicraft
   module Concerns
+    # Helper class with shared methods
     module MiddlewareUtil
       def config
         @config ||= Apicraft.config

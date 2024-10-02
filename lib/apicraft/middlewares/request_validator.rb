@@ -23,18 +23,17 @@ module Apicraft
         )
         return @app.call(env) if operation.blank?
 
-        res = operation.validate_request_body(
+        operation.validate_request_body(
           content_type,
           request.params
         )
-        return @app.call(env)
-
-      rescue OpenAPIParser::OpenAPIError => ex
+        @app.call(env)
+      rescue OpenAPIParser::OpenAPIError => e
         [
           config.request_validation_http_code,
           { 'Content-Type': content_type },
           [
-            response_body(ex)&.send(convertor(content_type))
+            response_body(e)&.send(convertor(content_type))
           ].compact
         ]
       end
