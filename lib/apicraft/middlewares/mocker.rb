@@ -5,6 +5,8 @@ module Apicraft
     # Apicraft Middleware to handle routing
     # and make mock calls available.
     class Mocker
+      include Concerns::MiddlewareUtil
+
       def initialize(app)
         @app = app
       end
@@ -23,14 +25,7 @@ module Apicraft
         response = operation.response_for(code.to_s)
         raise Errors::InvalidResponse if response.blank?
 
-        # Determine the format passed in the request.
-        # If passed we use it and the response format.
-        # If not we use the first format from the specs.
-        request.format.to_s
-        # indicates that not format was specified.
-        format = nil
-
-        content, content_type = response.mock(format)
+        content, content_type = response.mock(request.content_type)
 
         [
           code.to_i,
@@ -44,16 +39,6 @@ module Apicraft
       end
 
       private
-
-      def config
-        @config ||= Apicraft.config
-      end
-
-      def convertor(format)
-        return if format.blank?
-
-        Apicraft::Constants::MIME_TYPE_CONVERTORS[format]
-      end
 
       def mock?(request)
         request.headers[config.headers[:mock]].present?

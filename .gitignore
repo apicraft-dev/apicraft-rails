@@ -47,3 +47,4 @@ Gemfile.lock
 
 /demo
 vendor/ruby
+/vendor

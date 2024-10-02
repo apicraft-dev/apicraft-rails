@@ -12,7 +12,7 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
 
 ![APICraft Rails Logo](assets/apicraft_rails.png)
 
-- [APICraft Rails (Beta)](#apicraft-rails-beta)
+- [APICraft Rails](#apicraft-rails)
   - [✨ Features](#-features)
   - [🔜 Upcoming Features](#-upcoming-features)
   - [🪄 Works Like Magic](#-works-like-magic)
@@ -29,6 +29,8 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
   - [📘 Code of Conduct](#-code-of-conduct)
 
 ## ✨ Features
+- 🧑‍💻️ **Automatic Request Validations** - Validates the request based on the openapi specs so that you don't need to add params validations everywhere in your controllers.
+
 - 🧑‍💻️ **Dynamic Mock Data Generation** - Detects the specifications and instantly mounts working routes with mock responses. No extra configuration required.
 
 - ⚙️ **Customizable Mock Responses** - Tailor mock responses to simulate different scenarios and edge cases, helping your team prepare for real-world conditions right from the start.
@@ -40,7 +42,6 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
 - 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
 
 ## 🔜 Upcoming Features
-- 💢 **Request Validations** - Automatic request validations.
 - 💎 **Clean & Custom Ruby DSL** - Support for a Ruby DSL alongwith the current `.json` and `.yaml` formats.
 
 
@@ -89,8 +90,11 @@ module App
   class Application < Rails::Application
     # Rest of the configuration...
 
-    config.middleware.use Apicraft::Middlewares::Mocker
-    config.middleware.use Apicraft::Middlewares::Introspector
+    [
+      Apicraft::Middlewares::Mocker,
+      Apicraft::Middlewares::Introspector,
+      Apicraft::Middlewares::RequestValidator
+    ].each { |mw| config.middleware.use mw }
 
     Apicraft.configure do |config|
       config.contracts_path = Rails.root.join("app/contracts")
@@ -274,6 +278,20 @@ Apicraft.configure do |config|
 
     # Delay simulation header name
     delay: "Apicraft-Delay"
+  }
+
+  config.request_validation = {
+    enabled: true,
+
+    # Return the http code for validation errors, defaults to 400
+    http_code: 400,
+
+    # Return a custom response body, defaults to `{ message: "..." }`
+    response_body: proc do |ex|
+      {
+        message: ex.message
+      }
+    end
   }
 end
 
