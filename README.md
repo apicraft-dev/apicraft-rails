@@ -29,7 +29,7 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
   - [📘 Code of Conduct](#-code-of-conduct)
 
 ## ✨ Features
-- 🧑‍💻️ **Automatic Request Validations** - Validates the request based on the openapi specs so that you don't need to add params validations everywhere in your controllers.
+- 🛡️ **Automatic Request Validations** - Validates the request based on the openapi specs so that you don't need to add params validations everywhere in your controllers.
 
 - 🧑‍💻️ **Dynamic Mock Data Generation** - Detects the specifications and instantly mounts working routes with mock responses. No extra configuration required.
 
