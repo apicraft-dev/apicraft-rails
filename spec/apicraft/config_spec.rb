@@ -13,6 +13,13 @@ RSpec.describe Apicraft::Config do
     }.with_indifferent_access
   end
 
+  let(:request_validation) do
+    {
+      enabled: false,
+      http_code: 400
+    }.with_indifferent_access
+  end
+
   let(:default_opts) do
     {
       contracts_path: nil,
@@ -20,8 +27,8 @@ RSpec.describe Apicraft::Config do
       mocks: true,
       introspection: true,
       strict_reference_validation: true,
-      request_validations: true,
-      max_allowed_delay: 30
+      max_allowed_delay: 30,
+      request_validation: request_validation
     }.with_indifferent_access
   end
 
@@ -55,16 +62,18 @@ RSpec.describe Apicraft::Config do
     end
 
     context "when custom options are passed" do
-      let(:custom_opts) do
-        {
-          contracts_path: "/custom/path",
-          mocks: false,
-          introspection: false,
-          strict_reference_validation: false,
-          max_allowed_delay: 15
+      let(:config) { described_class.new }
+
+      before do
+        config.contracts_path = "/custom/path"
+        config.mocks = false
+        config.introspection = false
+        config.strict_reference_validation = false
+        config.max_allowed_delay = 15
+        config.request_validation = {
+          enabled: false
         }
       end
-      let(:config) { described_class.new(custom_opts) }
 
       it "sets custom contracts_path" do
         expect(config.contracts_path).to eq("/custom/path")
@@ -84,6 +93,14 @@ RSpec.describe Apicraft::Config do
 
       it "sets custom max_allowed_delay" do
         expect(config.max_allowed_delay).to eq(15)
+      end
+
+      it "sets request_validation flag" do
+        expect(config.request_validation_enabled?).to be(false)
+      end
+
+      it "retains defaults" do
+        expect(config.request_validation_http_code).to eq(400)
       end
     end
   end

@@ -1,6 +1,6 @@
 # APICraft Rails
 [![Build](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml/badge.svg)](https://github.com/apicraft-dev/apicraft-rails/actions/workflows/build.yml)
-[![Gem Version](https://badge.fury.io/rb/apicraft-rails.svg?v=0.5.2.beta1)](https://badge.fury.io/rb/apicraft-rails)
+[![Gem Version](https://badge.fury.io/rb/apicraft-rails.svg?v=1.0.0)](https://badge.fury.io/rb/apicraft-rails)
 
 🚀 Accelerates your development by 2-3x with an API Design First approach. Seamlessly integrates with your Rails application server — no fancy tooling or expenses required.
 
@@ -12,23 +12,26 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
 
 ![APICraft Rails Logo](assets/apicraft_rails.png)
 
-- [APICraft Rails (Beta)](#apicraft-rails-beta)
+- [APICraft Rails](#apicraft-rails)
   - [✨ Features](#-features)
   - [🔜 Upcoming Features](#-upcoming-features)
   - [🪄 Works Like Magic](#-works-like-magic)
   - [🕊 API Design First Philosophy](#-api-design-first-philosophy)
   - [🏗 Installation](#-installation)
   - [⚙️ Usage](#️-usage)
-    - [🎭 API Mocking](#-api-mocking)
-    - [🎮 API Mocking (Behaviours)](#-api-mocking-behaviours)
-    - [🧐 API Introspection](#-api-introspection)
-    - [📖 API Documentation (Swagger docs and RapiDoc)](#-api-documentation-swagger-docs-and-rapidoc)
+    - [🛡️ Request Validations](#️-request-validations)
+    - [🎭 Mocking](#-mocking)
+    - [🎮 Behaviour Mocking](#-behaviour-mocking)
+    - [🧐 Introspection](#-introspection)
+    - [📖 Documentation (Swagger docs and RapiDoc)](#-documentation-swagger-docs-and-rapidoc)
   - [🔧 Configuration](#-configuration)
   - [🤝 Contributing](#-contributing)
   - [📝 License](#-license)
   - [📘 Code of Conduct](#-code-of-conduct)
 
 ## ✨ Features
+- 🛡️ **Automatic Request Validations** - Validates the request based on the openapi specs so that you don't need to add params validations everywhere in your controllers.
+
 - 🧑‍💻️ **Dynamic Mock Data Generation** - Detects the specifications and instantly mounts working routes with mock responses. No extra configuration required.
 
 - ⚙️ **Customizable Mock Responses** - Tailor mock responses to simulate different scenarios and edge cases, helping your team prepare for real-world conditions right from the start.
@@ -40,7 +43,6 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
 - 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
 
 ## 🔜 Upcoming Features
-- 💢 **Request Validations** - Automatic request validations.
 - 💎 **Clean & Custom Ruby DSL** - Support for a Ruby DSL alongwith the current `.json` and `.yaml` formats.
 
 
@@ -72,7 +74,7 @@ By adopting an API Design First approach with APICraft Rails, you can accelerate
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'apicraft-rails', '~> 0.5.2.beta1'
+gem 'apicraft-rails', '~> 1.0.0'
 ```
 
 And then execute:
@@ -89,8 +91,11 @@ module App
   class Application < Rails::Application
     # Rest of the configuration...
 
-    config.middleware.use Apicraft::Middlewares::Mocker
-    config.middleware.use Apicraft::Middlewares::Introspector
+    [
+      Apicraft::Middlewares::Mocker,
+      Apicraft::Middlewares::Introspector,
+      Apicraft::Middlewares::RequestValidator
+    ].each { |mw| config.middleware.use mw }
 
     Apicraft.configure do |config|
       config.contracts_path = Rails.root.join("app/contracts")
@@ -117,7 +122,11 @@ my_rails_app/
 │   │   ├── user.rb
 │   │   └── order.rb
 ```
-### 🎭 API Mocking
+
+### 🛡️ Request Validations
+All incoming requests will be validated against the defined schema. This ensures that by the time the params reach the controller they are adhering to all the schema requirements. It's enabled by default. You can customize the response of a failed validation. Check the [configuration section](#-configuration) section for a full list of options for this.
+
+### 🎭 Mocking
 **APICraft** dynamically generates mock APIs by interpreting contract specifications on the fly. You can request the mock response by passing `Apicraft-Mock: true` in the headers.
 
 `https://yoursite.com/api/orders`
@@ -141,7 +150,7 @@ headers: {
 ]
 ```
 
-### 🎮 API Mocking (Behaviours)
+### 🎮 Behaviour Mocking
 The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-Response-Code` header in the mock request.
 You can find a list of all the supported headers in the [configuration section](#-configuration) that would allow you to manipulate the API Behaviour.
 
@@ -160,12 +169,12 @@ headers: {
 }
 ```
 
-### 🧐 API Introspection
-All APIs are can be introspected. You can do so by passing the `Apicraft-Introspection` header.
+### 🧐 Introspection
+All APIs are can be introspected. You can do so by passing the `Apicraft-Introspect` header.
 
 ```
 headers: {
-  Apicraft-Introspection: true
+  Apicraft-Introspect: true
 }
 ```
 
@@ -195,7 +204,7 @@ Example: `https://yoursite.com/api/orders`
   }
 }
 ```
-### 📖 API Documentation (Swagger docs and RapiDoc)
+### 📖 Documentation (Swagger docs and RapiDoc)
 
 Mount the documentation views in your route file.
 
@@ -274,6 +283,20 @@ Apicraft.configure do |config|
 
     # Delay simulation header name
     delay: "Apicraft-Delay"
+  }
+
+  config.request_validation = {
+    enabled: true,
+
+    # Return the http code for validation errors, defaults to 400
+    http_code: 400,
+
+    # Return a custom response body, defaults to `{ message: "..." }`
+    response_body: proc do |ex|
+      {
+        message: ex.message
+      }
+    end
   }
 end
 

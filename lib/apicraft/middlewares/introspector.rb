@@ -4,6 +4,8 @@ module Apicraft
   module Middlewares
     # Apicraft Middleware to handle API Introspection.
     class Introspector
+      include Concerns::MiddlewareUtil
+
       def initialize(app)
         @app = app
       end
@@ -29,10 +31,6 @@ module Apicraft
       end
 
       private
-
-      def config
-        @config ||= Apicraft.config
-      end
 
       def introspect?(request)
         request.headers[config.headers[:introspect]].present?

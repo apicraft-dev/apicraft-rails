@@ -15,10 +15,10 @@ module Apicraft
       end
 
       def operation(method, path)
-        with_cache("operation-#{method.downcase}-#{path}") do
-          op = document.request_operation(method.downcase, path)
-          Operation.new(op) if op.present?
-        end
+        # with_cache("operation-#{method.downcase}-#{path}") do
+        op = document.request_operation(method.downcase, path)
+        Operation.new(op) if op.present?
+        # end
       end
 
       class << self
