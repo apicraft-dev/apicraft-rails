@@ -23,19 +23,19 @@ module Apicraft
 
         [
           200,
-          { 'Content-Type': content_type },
+          { 'Content-Type' => content_type },
           [content]
         ]
       rescue Errors::RouteNotFound
         [
           404,
-          { 'Content-Type': "text/plain" },
+          { 'Content-Type' => "text/plain" },
           ["Error: not found"]
         ]
       rescue StandardError => e
         [
           500,
-          { 'Content-Type': "text/plain" },
+          { 'Content-Type' => "text/plain" },
           ["Error: #{e.message}"]
         ]
       end
@@ -54,8 +54,8 @@ module Apicraft
         [
           401,
           {
-            "Content-Type": "text/plain",
-            "WWW-Authenticate": "Basic realm=\"Restricted Area\""
+            "Content-Type" => "text/plain",
+            "WWW-Authenticate" => "Basic realm=\"Restricted Area\""
           },
           ["Unauthorized"]
         ]
