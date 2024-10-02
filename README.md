@@ -19,10 +19,11 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
   - [🕊 API Design First Philosophy](#-api-design-first-philosophy)
   - [🏗 Installation](#-installation)
   - [⚙️ Usage](#️-usage)
-    - [🎭 API Mocking](#-api-mocking)
-    - [🎮 API Mocking (Behaviours)](#-api-mocking-behaviours)
-    - [🧐 API Introspection](#-api-introspection)
-    - [📖 API Documentation (Swagger docs and RapiDoc)](#-api-documentation-swagger-docs-and-rapidoc)
+    - [🛡️ Request Validations](#️-request-validations)
+    - [🎭 Mocking](#-mocking)
+    - [🎮 Behaviour Mocking](#-behaviour-mocking)
+    - [🧐 Introspection](#-introspection)
+    - [📖 Documentation (Swagger docs and RapiDoc)](#-documentation-swagger-docs-and-rapidoc)
   - [🔧 Configuration](#-configuration)
   - [🤝 Contributing](#-contributing)
   - [📝 License](#-license)
@@ -121,7 +122,11 @@ my_rails_app/
 │   │   ├── user.rb
 │   │   └── order.rb
 ```
-### 🎭 API Mocking
+
+### 🛡️ Request Validations
+All incoming requests will be validated against the defined schema. This ensures that by the time the params reach the controller they are adhering to all the schema requirements. It's enabled by default. You can customize the response of a failed validation. Check the [configuration section](#-configuration) section for a full list of options for this.
+
+### 🎭 Mocking
 **APICraft** dynamically generates mock APIs by interpreting contract specifications on the fly. You can request the mock response by passing `Apicraft-Mock: true` in the headers.
 
 `https://yoursite.com/api/orders`
@@ -145,7 +150,7 @@ headers: {
 ]
 ```
 
-### 🎮 API Mocking (Behaviours)
+### 🎮 Behaviour Mocking
 The above is an example of a 200 response. If you have more responses documented you can force that behaviour using `Apicraft-Response-Code` header in the mock request.
 You can find a list of all the supported headers in the [configuration section](#-configuration) that would allow you to manipulate the API Behaviour.
 
@@ -164,7 +169,7 @@ headers: {
 }
 ```
 
-### 🧐 API Introspection
+### 🧐 Introspection
 All APIs are can be introspected. You can do so by passing the `Apicraft-Introspect` header.
 
 ```
@@ -199,7 +204,7 @@ Example: `https://yoursite.com/api/orders`
   }
 }
 ```
-### 📖 API Documentation (Swagger docs and RapiDoc)
+### 📖 Documentation (Swagger docs and RapiDoc)
 
 Mount the documentation views in your route file.
 

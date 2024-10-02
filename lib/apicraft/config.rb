@@ -21,7 +21,7 @@ module Apicraft
       strict_reference_validation: true,
       max_allowed_delay: 30,
       request_validation: {
-        enabled: false,
+        enabled: true,
         http_code: 400,
         response_body: proc { |ex| { message: ex.message } }
       }
