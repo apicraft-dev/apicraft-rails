@@ -30,7 +30,7 @@ module Apicraft
       end
 
       def raw_schema
-        operation_object.raw_schema
+        @operation_object.raw_schema
       end
 
       def validate_request_body(content_type, body)

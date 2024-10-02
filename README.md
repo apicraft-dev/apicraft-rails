@@ -165,11 +165,11 @@ headers: {
 ```
 
 ### 🧐 API Introspection
-All APIs are can be introspected. You can do so by passing the `Apicraft-Introspection` header.
+All APIs are can be introspected. You can do so by passing the `Apicraft-Introspect` header.
 
 ```
 headers: {
-  Apicraft-Introspection: true
+  Apicraft-Introspect: true
 }
 ```
 
