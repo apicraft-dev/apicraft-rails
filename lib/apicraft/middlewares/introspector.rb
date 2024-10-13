@@ -25,7 +25,7 @@ module Apicraft
 
         [
           200,
-          { 'Content-Type': "application/json" },
+          { "Content-Type" => "application/json" },
           [schema.to_json]
         ]
       end

@@ -30,7 +30,7 @@ module Apicraft
         [
           code.to_i,
           {
-            'Content-Type': content_type
+            "Content-Type" => content_type
           },
           [
             content&.send(convertor(content_type))

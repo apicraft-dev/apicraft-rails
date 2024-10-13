@@ -31,7 +31,7 @@ module Apicraft
       rescue OpenAPIParser::OpenAPIError => e
         [
           config.request_validation_http_code,
-          { 'Content-Type': content_type },
+          { "Content-Type" => content_type },
           [
             response_body(e)&.send(convertor(content_type))
           ].compact
