@@ -22,6 +22,7 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
     - [🎮 Behaviour Mocking](#-behaviour-mocking)
     - [🧐 Introspection](#-introspection)
     - [📖 Documentation (Swagger docs and RapiDoc)](#-documentation-swagger-docs-and-rapidoc)
+    - [📖 CLI Support](#-cli-support)
   - [🔧 Configuration](#-configuration)
   - [🤝 Contributing](#-contributing)
   - [📝 License](#-license)
@@ -39,6 +40,8 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
 - 📺 **Documentation Out of the Box** - Documentation using `SwaggerDoc` and `RapiDoc` both.
 
 - 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
+
+- 🗂 **CLI Support** - Specification validations can be triggered from the CLI allowing integrations into your CI/CD pipelines.
 
 ## 🕊 API Design First Philosophy
 
@@ -225,6 +228,17 @@ RapiDoc                    |  SwaggerDoc
 :-------------------------:|:-------------------------:
 ![](assets/rapidoc.png)  |  ![](assets/swaggerdoc.png)
 
+### 📖 CLI Support
+
+To check if all the specification are valid
+```
+$ rails apicraft:validate
+```
+
+To generate a new spec file in the contracts directory
+```
+$ rails apicraft:generate file=openapi
+```
 ## 🔧 Configuration
 
 List of available configurations.
