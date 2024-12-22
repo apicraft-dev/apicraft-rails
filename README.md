@@ -189,9 +189,7 @@ Example: `https://yoursite.com/api/orders`
       }
     }
   ],
-  "responses": {
-    ...
-  }
+  "responses": {}
 }
 ```
 ### 📖 Documentation (Swagger docs and RapiDoc)
