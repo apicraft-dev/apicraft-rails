@@ -7,5 +7,9 @@ module Apicraft
     initializer "apicraft.load_api_contracts" do
       Apicraft::Loader.load!
     end
+
+    rake_tasks do
+      load "apicraft/tasks/validate.rake"
+    end
   end
 end

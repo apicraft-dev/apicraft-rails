@@ -38,7 +38,8 @@ module Apicraft
       OpenAPIParser.parse(
         parsed,
         {
-          strict_reference_validation: config.strict_reference_validation
+          strict_reference_validation: config.strict_reference_validation,
+          expand_reference: true
         }
       )
 

@@ -19,6 +19,7 @@ require_relative "apicraft/errors"
 require_relative "apicraft/mocker"
 require_relative "apicraft/openapi"
 
+require_relative "apicraft/validator"
 require_relative "apicraft/loader"
 require_relative "apicraft/railtie"
 
