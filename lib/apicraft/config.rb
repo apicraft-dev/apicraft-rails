@@ -43,6 +43,10 @@ module Apicraft
       @opts[:contracts_path]
     end
 
+    def default_contracts_path
+      Rails.root.join("app", "contracts")
+    end
+
     def mocks
       @opts[:mocks]
     end

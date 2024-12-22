@@ -5,7 +5,7 @@ Apicraft::Web::App.use do |user, password|
 end
 
 Apicraft.configure do |config|
-  config.contracts_path = Rails.root.join("app/contracts")
+  config.contracts_path = Rails.root.join("app", "contracts")
 
   # Enables or disables the mocking features
   # Defaults to true

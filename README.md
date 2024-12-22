@@ -71,41 +71,38 @@ By adopting an API Design First approach with APICraft Rails, you can accelerate
 
 ## 🏗 Installation
 
-Add this line to your application's Gemfile:
+1. Add this line to your application's Gemfile:
 
 ```ruby
 gem 'apicraft-rails', '~> 1.0.2'
 ```
 
-And then execute:
+2. And then execute:
+```bash
+$ bundle install
+$ rails apicraft:init
+```
 
-    $ bundle install
+This will create a file called `config/initializers/apicraft.rb` with all the necessary configurations. It will also create the default contracts directory called `app/contracts`.
 
-After the installation in your rails project, you can start adding contracts in the `app/contracts` directory. This can have any internal directory structure based on your API versions, standards, etc.
 
-Add the following into your Rails application, via the `config/application.rb`
+3. Add the `apicraft` route to your route file (for documentation):
 
 ```ruby
-# config/application.rb
-module App
-  class Application < Rails::Application
-    # Rest of the configuration...
-
-    [
-      Apicraft::Middlewares::Mocker,
-      Apicraft::Middlewares::Introspector,
-      Apicraft::Middlewares::RequestValidator
-    ].each { |mw| config.middleware.use mw }
-
-    Apicraft.configure do |config|
-      config.contracts_path = Rails.root.join("app/contracts")
-    end
-  end
+Rails.application.routes.draw do
+  # other routes
+  mount Apicraft::Web::App, at: "/apicraft"
 end
 ```
 
 Now every API in the specification has a functional version. For any path (from the contracts), APICraft serves a mock response when `Apicraft-Mock: true` is passed in the headers otherwise, it forwards the request to your application as usual.
 
+4. Generate a sample spec file
+```
+rails apicraft:generate file=v2/openapi
+```
+
+This will generate a sample file called `app/contracts/v2/openapi.yaml`
 ## ⚙️ Usage
 
 Add your specification files to the `app/contracts` directory in your Rails project. You can also configure this directory to be something else.
