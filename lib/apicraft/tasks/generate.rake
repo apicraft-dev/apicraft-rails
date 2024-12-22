@@ -3,12 +3,12 @@
 namespace :apicraft do
   desc "Generate an example spec file"
 
-  task generate: :environment do |t, args|
+  task generate: :environment do |_t, _args|
     arguments = ARGV.reduce({}) do |final, current|
       key, val = current.split("=").map(&:strip)
       final.merge!({
-        key => val
-      })
+                     key => val
+                   })
     end
 
     filepath = arguments["file"]

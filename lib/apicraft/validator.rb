@@ -21,10 +21,10 @@ module Apicraft
       ext = File.extname(file)
 
       parsed = if ext == ".json"
-        JSON.parse(File.read(file))
-      else
-        YAML.load_file(file)
-      end
+                 JSON.parse(File.read(file))
+               else
+                 YAML.load_file(file)
+               end
 
       OpenAPIParser.parse(
         parsed,

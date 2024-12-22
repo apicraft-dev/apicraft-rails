@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Apicraft::Web::App.use do |user, password|
-  [user, password] == ["admin", "password"]
+  [user, password] == %w[admin password]
 end
 
 Apicraft.configure do |config|
