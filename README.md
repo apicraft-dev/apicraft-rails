@@ -14,8 +14,6 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
 
 - [APICraft Rails](#apicraft-rails)
   - [✨ Features](#-features)
-  - [🔜 Upcoming Features](#-upcoming-features)
-  - [🪄 Works Like Magic](#-works-like-magic)
   - [🕊 API Design First Philosophy](#-api-design-first-philosophy)
   - [🏗 Installation](#-installation)
   - [⚙️ Usage](#️-usage)
@@ -41,14 +39,6 @@ It avoids the pitfalls of the code-first methodology, where contracts are auto-g
 - 📺 **Documentation Out of the Box** - Documentation using `SwaggerDoc` and `RapiDoc` both.
 
 - 🗂 **Easy Contracts Management** - Management of `openapi` specifications from within `app/contracts` directory. No new syntax, just plain old `openapi` standard with `.json` or `.yaml` formats
-
-## 🔜 Upcoming Features
-- 💎 **Clean & Custom Ruby DSL** - Support for a Ruby DSL alongwith the current `.json` and `.yaml` formats.
-
-
-## 🪄 Works Like Magic
-
-Once you’ve installed the gem, getting started is a breeze. Simply create your OpenAPI contracts within the `app/contracts` directory of your Rails application. You’re free to organize this directory in a way that aligns with your project's standards and preferences. That’s it—your APIs will be up and running with mock responses, ready for development without any additional setup. It's as effortless as it sounds!
 
 ## 🕊 API Design First Philosophy
 
