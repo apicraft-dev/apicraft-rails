@@ -19,6 +19,7 @@ module Apicraft
     rake_tasks do
       load "apicraft/tasks/validate.rake"
       load "apicraft/tasks/init.rake"
+      load "apicraft/tasks/generate.rake"
     end
   end
 end
