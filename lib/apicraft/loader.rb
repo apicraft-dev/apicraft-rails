@@ -35,16 +35,14 @@ module Apicraft
                  YAML.load_file(file)
                end
 
-      OpenAPIParser.parse(
-        parsed,
-        {
-          strict_reference_validation: config.strict_reference_validation,
-          expand_reference: true
-        }
-      )
-
       Openapi::Contract.create!(
-        OpenAPIParser.parse(parsed)
+        OpenAPIParser.parse(
+          parsed,
+          {
+            strict_reference_validation: config.strict_reference_validation,
+            expand_reference: true
+          }
+        )
       )
     end
   end
